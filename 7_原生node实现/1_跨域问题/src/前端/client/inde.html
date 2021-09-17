@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>我是首页</div>
+    
+   <span>用户名</span> <input type="text">
+    <div></div>
+    <span>密码</span><input type="text">
+</body>
+</html>
+<script>
+// http://javascript.ruanyifeng.com/bom/ajax.html
+// 跨域请求 : 服务器接受到了来自客户端的请求 客户端也接受到了服务端的响应,因为我们可以看到服务端自定义的响应头
+
+//             如果服务端自定义响应头 ,无论是否跨域,在浏览器上是可以看到的,所以虽然跨域,但是可以在响应头传输一些信息
+//             如果跨域在前端js代码中通过getAllResponseHeaders或者getResponseHeader 是获取不到的 
+//              
+/*
+// 当服务端设置允许跨域后,前端js代码中默认可以获取的响应头信息有如下几种
+// Access-Control-Expose-Headers 服务端可以设置允许客户端访问的响应头 设置之后可以访问一些自定义的响应头
+//  可以
+Cache-Control
+Content-Language
+Content-Type
+Expires
+Last-Modified
+Pragma
+*/
+
+
+// 虽然跨域,但仍然收到了get请求参数
+// 验证post请求等.. 文件上传等
+
+
+var xhr = new XMLHttpRequest();
+xhr.open( 'GET', 'http://127.0.0.1:9090/?username=lsy' , true );
+xhr.onreadystatechange = function () {
+
+
+
+ 
+
+
+
+  if (xhr.readyState == 4 && xhr.status == 200) {
+    var headersAll = xhr.getAllResponseHeaders()
+    console.log("响应头信息headersAll",headersAll)
+  var headers = xhr.getResponseHeader("myselfMsg")
+console.log("响应头信息",headers)
+      console.log("xhr",xhr)
+    return;
+  }else{
+    console.log(xhr.responseText);
+  }
+  
+};
+
+
+
+xhr.onerror = function (e) {
+    console.log(e)
+  console.log(xhr.statusText);
+};
+xhr.send();
+
+</script>

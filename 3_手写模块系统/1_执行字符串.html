@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+
+// eval 和 new Function 都可以访问外界变量
+
+
+let name = 123
+ let str1 = 'let name = 456 ;console.log(name)'
+ // eval(str1)   // 123
+
+
+ 
+ let fn  = new Function(str1)
+ fn()   // 123
+ console.log(fn)
+ /*
+    ƒ anonymous(
+    ) {
+    console.log(name)  
+    }
+ */
+
+
+// 参数name 参数age 代码体console.log(name)
+ let fn1  = new Function("name","age","console.log(name)")
+ fn1(789)   // 789
+ console.log(fn1)
+ /*
+    ƒ anonymous(name,age
+        ) {
+        console.log(name)
+        }
+ */
+
+
+
+
+
+</script>
